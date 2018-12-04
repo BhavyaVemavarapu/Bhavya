@@ -1,0 +1,896 @@
+library(MASS)
+
+Carsd = read.csv('C:\\Users\\BHAVYA\\Documents\\R\\cars.csv')
+#View(Carsd)
+
+
+#data
+set.seed(0)
+rand = sample(1:nrow(Carsd),350)
+train = Carsd[rand, ]
+test = Carsd[-rand, ]
+
+
+train_random = sample(1:nrow(train),10)
+train_x = train[train_random,]
+
+
+#fitting polynomial regressioon of order no 7
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+
+
+#plotting the model over the data
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 10',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7.png')
+dev.off()
+
+#TRAIN AND TEST ACCURACY
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+sum((pred-test$MPG)^2)                  #Test
+################################################################################
+#polynomail model for order 7 and sample size 20
+train_random = sample(1:nrow(train),20)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 20',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=20.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_20=sum((pred-test$MPG)^2)        #Test
+test_rss_20
+##################################################################################
+#polynomail model for order 7 and sample size 30
+train_random = sample(1:nrow(train),30)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 30',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=30.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_30=sum((pred-test$MPG)^2)        #Test
+test_rss_30
+##########################################################
+#polynomail model for order 7 and sample size 50
+train_random = sample(1:nrow(train),50)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 50',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=50.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_50=sum((pred-test$MPG)^2)        #Test
+test_rss_50
+##################################################################
+#polynomail model for order 7 and sample size 70
+train_random = sample(1:nrow(train),70)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 70',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=70.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_70=sum((pred-test$MPG)^2)        #Test
+test_rss_70
+##################################################################
+#polynomail model for order 7 and sample size 100
+train_random = sample(1:nrow(train),100)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 100',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=100.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_100=sum((pred-test$MPG)^2)        #Test
+test_rss_100
+##################################################################
+#polynomail model for order 7 and sample size 200
+train_random = sample(1:nrow(train),200)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 200',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=200.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_200=sum((pred-test$MPG)^2)        #Test
+test_rss_200
+##################################################################
+#polynomail model for order 7 and sample size 350
+train_random = sample(1:nrow(train),350)
+train_x = train[train_random,]
+m7 <- lm(MPG ~ Weight + I(Weight^2) + I(Weight^3) 
+         + I(Weight^4) + I(Weight^5) + I(Weight^6) + I(Weight^7), train_x)
+m7
+plot(train_x$Weight,train_x$MPG,main='Polynomial Regression of orderno 7 for sample size 350',pch=19,cex=0.5)
+lines(sort(train_x$Weight), fitted(m7)[order(train_x$Weight)], col='brown', type='l',pch=20)
+dev.copy(png,'pr order7,SS=350.png')
+dev.off()
+sum(m7$residuals^2)                      #Train
+pred = predict(m7, newdata=test)
+test_rss_350=sum((pred-test$MPG)^2)        #Test
+test_rss_350
+###################################################################
+test_rss = c(test_rss_20,test_rss_30,test_rss_50,test_rss_70,
+              test_rss_100,test_rss_200,test_rss_350)
+L = c(20,30,50,70,100,200,350)   #Sample Size
+plot(L,test_rmse, type = "l",main = "Test Rss vs Sample Size(For Order 7 Model)", 
+     xlab = "Sample Size", ylab = "Test Rss", cex = 0.5, col = 'red')
+
+dev.copy(png,'Test Rss Vs Sample Size For Order 7.png')
+dev.off()
+
+
+###################################################################
+
+set.seed(1)
+rand = sample(1:nrow(Carsd),20)
+train = Carsd[rand, ]
+test = Carsd[-rand, ]
+
+train_random = sample(1:nrow(train),20)
+train_x = train[train_random,]
+n=20
+
+m1 <- lm(MPG ~ Weight, train_x)
+m1
+
+
+plot(train_x$Weight,train$MPG,main='polynomial Regression of order 1', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model1.png')
+dev.off()
+
+sum(m1$residuals^2)
+pred = predict(m1, newdata=test)
+testrss_1=sum((pred-test$MPG)^2)
+testrm_1 = sqrt(1/(n-2)*testrss_1)
+testrm_1
+
+m2 <- lm(MPG ~ Weight+I(Weight^2), train_x)
+m2
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial Regression of order 2',pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model2.png')
+dev.off()
+
+sum(m2$residuals^2)
+pred = predict(m2, newdata=test)
+testrss_2=sum((pred-test$MPG)^2)
+testrm_2 = sqrt(1/(n-3)*testrss_2)
+testrm_2
+
+
+m3 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3), train_x)
+m3
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial Regression of order 3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.png')
+dev.off()
+
+
+sum(m3$residuals^2)
+pred = predict(m3, newdata=test)
+testrss_3=sum((pred-test$MPG)^2)
+testrm_3 = sqrt(1/(n-4)*testrss_3)
+testrm_3
+
+m4 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4), train_x)
+m4
+
+
+plot(train_x$Weight,train_x$MPG, main='polynomial Regression of order 4',pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.png')
+dev.off()
+
+sum(m4$residuals^2)
+pred = predict(m4, newdata=test)
+testrss_4=sum((pred-test$MPG)^2)
+testrm_4 = sqrt(1/(n-5)*testrss_4)
+testrm_4
+
+m5 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5), train_x)
+m5
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial Regression of order 5', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model5.png')
+dev.off()
+
+sum(m5$residuals^2)
+pred = predict(m5, newdata=test)
+testrss_5=sum((pred-test$MPG)^2)
+testrm_5 = sqrt(1/(n-6)*testrss_5)
+testrm_5
+
+m6 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+           I(Weight^6), train_x)
+m6
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial Regression of order 6', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model6.png')
+dev.off()
+
+sum(m6$residuals^2)
+pred = predict(m6, newdata=test)
+testrss_6=sum((pred-test$MPG)^2)
+testrm_6 = sqrt(1/(n-7)*testrss_6)
+testrm_6
+
+m10 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+           I(Weight^6)+I(Weight^7)+I(Weight^8)+I(Weight^9)+I(Weight^10), train_x)
+m10
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial Regression of order 10', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model10.png')
+dev.off()
+
+sum(m10$residuals^2)
+pred = predict(m7, newdata=test)
+testrss_10=sum((pred-test$MPG)^2)
+testrm_10 = sqrt(1/(n-11)*testrss_10)
+testrm_10
+
+k = c(testrm_1,testrm_2,testrm_3,testrm_4,testrm_5,
+      testrm_6,testrm_10)
+ModelComplexity = c(1,2,3,4,5,6,10)
+
+plot(ModelComplexity,k, type = "l",main = "Test Rss vs Model Complexity", 
+     xlab = "ModelComplexity", ylab = "Test Rss", cex = 0.5, col = 'red')
+
+dev.copy(png,'Test Rss Vs Model Complexity.png')
+dev.off()
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of sample1', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='brown', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='green', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='yellow', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='black', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='blue', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='magenta', type='l',pch=20)
+
+dev.copy(png,'polynomial regression for sample1.png')
+dev.off()
+
+
+
+
+
+
+###############################################################################
+
+
+set.seed(4)
+rand = sample(1:nrow(Carsd),20)
+train = Carsd[rand, ]
+test = Carsd[-rand, ]
+
+train_random = sample(1:nrow(train),20)
+train_x = train[train_random,]
+
+
+m1 <- lm(MPG ~ Weight, train_x)
+m1
+
+
+plot(train_x$Weight,train$MPG,main ='polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model1 for sample n2 = 20.png')
+dev.off()
+n= 20
+sum(m1$residuals^2)
+pred = predict(m1, newdata=test)
+testrss_1=sum((pred-test$MPG)^2)
+testrm_1 = sqrt(1/(n-2)*testrss_1)
+testrm_1
+
+
+m2 <- lm(MPG ~ Weight+I(Weight^2), train_x)
+m2
+
+
+plot(train_x$Weight,train_x$MPG,main= 'polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model2 for sample n2 = 20.png')
+dev.off()
+
+sum(m2$residuals^2)
+pred = predict(m2, newdata=test)
+testrss_2=sum((pred-test$MPG)^2)
+testrm_2 = sqrt(1/(n-3)*testrss_2)
+testrm_2
+
+
+m3 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3), train_x)
+m3
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3 for sample n2 = 20.png')
+dev.off()
+
+sum(m3$residuals^2)
+pred = predict(m3, newdata=test)
+testrss_3=sum((pred-test$MPG)^2)
+testrm_3 = sqrt(1/(n-4)*testrss_3)
+testrm_3
+
+m4 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4), train_x)
+m4
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4 for sample n2 = 20.png')
+dev.off()
+
+sum(m4$residuals^2)
+pred = predict(m4, newdata=test)
+testrss_4=sum((pred-test$MPG)^2)
+testrm_4 = sqrt(1/(n-5)*testrss_4)
+testrm_4
+
+m5 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5), train_x)
+m5
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model5 for sample n2 = 20.png')
+dev.off()
+
+sum(m5$residuals^2)
+pred = predict(m5, newdata=test)
+testrss_5=sum((pred-test$MPG)^2)
+testrm_5= sqrt(1/(n-6)*testrss_5)
+testrm_5
+
+m6 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+           I(Weight^6), train_x)
+m6
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model6 for sample n2 = 20.png')
+dev.off()
+
+sum(m6$residuals^2)
+pred = predict(m6, newdata=test)
+testrss_6=sum((pred-test$MPG)^2)
+testrm_6 = sqrt(1/(n-7)*testrss_6)
+testrm_6
+
+m10 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+            I(Weight^6)+I(Weight^7)+I(Weight^8)+I(Weight^9)+I(Weight^10), train_x)
+m10
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model10 for sample n2 = 20.png')
+dev.off()
+
+sum(m10$residuals^2)
+pred = predict(m7, newdata=test)
+testrss_10=sum((pred-test$MPG)^2)
+testrm_10 = sqrt(1/(n-11)*testrss_10)
+testrm_10
+
+k = c(testrm_1,testrm_2,testrm_3,testrm_4,testrm_5,
+      testrm_6,testrm_10)
+ModelComplexity1 = c(1,2,3,4,5,6,10)
+
+plot(ModelComplexity,k, type = "l",main = "Test Rss vs Model Complexity1", 
+     xlab = "ModelComplexity", ylab = "Test Rss", cex = 0.5, col = 'red')
+
+dev.copy(png,'Test Rss Vs Model Complexity1.png')
+dev.off()
+
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of sample2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='brown', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='green', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='yellow', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='black', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='blue', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='magenta', type='l',pch=20)
+dev.copy(png,'polynomial regression for sample2.png')
+dev.off()
+
+#############################################################
+
+set.seed(7)
+rand = sample(1:nrow(Carsd),20)
+train = Carsd[rand, ]
+test = Carsd[-rand, ]
+
+train_random = sample(1:nrow(train),20)
+train_x = train[train_random,]
+
+
+m1 <- lm(MPG ~ Weight, train_x)
+m1
+
+
+plot(train_x$Weight,train$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.1 for sample n2 = 20.png')
+dev.off()
+
+sum(m1$residuals^2)
+pred = predict(m1, newdata=test)
+testrss_1=sum((pred-test$MPG)^2)
+testrm_1 = sqrt(1/20*testrss_1)
+testrm_1
+
+m2 <- lm(MPG ~ Weight+I(Weight^2), train_x)
+m2
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.2 for sample n2 = 20.png')
+dev.off()
+
+sum(m2$residuals^2)
+pred = predict(m2, newdata=test)
+testrss_2=sum((pred-test$MPG)^2)
+testrm_2 = sqrt(1/20*testrss_2)
+testrm_2
+
+
+m3 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3), train_x)
+m3
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.3 for sample n2 = 20.png')
+dev.off()
+
+sum(m3$residuals^2)
+pred = predict(m3, newdata=test)
+testrss_3=sum((pred-test$MPG)^2)
+testrm_3 = sqrt(1/20*testrss_3)
+testrm_3
+
+m4 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4), train_x)
+m4
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3,4 for sample n2 = 20.png')
+dev.off()
+
+sum(m4$residuals^2)
+pred = predict(m4, newdata=test)
+testrss_1=sum((pred-test$MPG)^2)
+testrm_1 = sqrt(1/20*testrss_1)
+testrm_1
+
+m5 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5), train_x)
+m5
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.5 for sample n2 = 20.png')
+dev.off()
+
+sum(m5$residuals^2)
+pred = predict(m5, newdata=test)
+testrss_5=sum((pred-test$MPG)^2)
+testrm_5 = sqrt(1/20*testrss_5)
+testrm_5
+
+m6 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+           I(Weight^6), train_x)
+m6
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.6 for sample n2 = 20.png')
+dev.off()
+
+
+sum(m6$residuals^2)
+pred = predict(m6, newdata=test)
+testrss_6=sum((pred-test$MPG)^2)
+testrm_6 = sqrt(1/20*testrss_6)
+testrm_6
+
+m10 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+            I(Weight^6)+I(Weight^7)+I(Weight^8)+I(Weight^9)+I(Weight^10), train_x)
+m10
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model3.10 for sample n2 = 20.png')
+dev.off()
+
+sum(m10$residuals^2)
+pred = predict(m7, newdata=test)
+testrss_10=sum((pred-test$MPG)^2)
+testrm_10 = sqrt(1/20*testrss_10)
+testrm_10
+
+k = c(testrm_1,testrm_2,testrm_3,testrm_4,testrm_5,
+      testrm_6,testrm_10)
+ModelComplexity = c(1,2,3,4,5,6,10)
+
+plot(ModelComplexity,k, type = "l",main = "Test Rss vs Model Complexity2", 
+     xlab = "ModelComplexity", ylab = "Test Rss", cex = 0.5, col = 'red')
+
+dev.copy(png,'Test Rss Vs Model Complexity2.png')
+dev.off()
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of sample3', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='brown', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='green', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='yellow', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='black', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='blue', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='magenta', type='l',pch=20)
+
+dev.copy(png,'polynomial regression of sample 3.png')
+dev.off()
+
+
+
+
+
+##################################################################################
+set.seed(15)
+rand = sample(1:nrow(Carsd),20)
+train = Carsd[rand, ]
+test = Carsd[-rand, ]
+
+train_random = sample(1:nrow(train),20)
+train_x = train[train_random,]
+
+
+m1 <- lm(MPG ~ Weight, train_x)
+m1
+
+
+plot(train_x$Weight,train$MPG,main = 'polynomial regression of subset4', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.1 for sample n2 = 20.png')
+dev.off()
+
+sum(m1$residuals^2)
+pred = predict(m1, newdata=test)
+testrss_1=sum((pred-test$MPG)^2)
+testrm_1 = sqrt(1/20*testrss_1)
+testrm_1
+
+
+m2 <- lm(MPG ~ Weight+I(Weight^2), train_x)
+m2
+
+
+plot(train_x$Weight,train_x$MPG, main = 'polynomial regression of subset4',pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.2 for sample n2 = 20.png')
+dev.off()
+
+sum(m2$residuals^2)
+pred = predict(m2, newdata=test)
+testrss_2=sum((pred-test$MPG)^2)
+testrm_2 = sqrt(1/20*testrss_2)
+testrm_2
+
+
+m3 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3), train_x)
+m3
+
+
+plot(train_x$Weight,train_x$MPG, main = 'polynomial regression of subset4',pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.3 for sample n2 = 20.png')
+dev.off()
+
+sum(m3$residuals^2)
+pred = predict(m3, newdata=test)
+testrss_3=sum((pred-test$MPG)^2)
+testrm_3= sqrt(1/20*testrss_3)
+testrm_3
+m4 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4), train_x)
+m4
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset2', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.4 for sample n2 = 20.png')
+dev.off()
+
+sum(m4$residuals^2)
+pred = predict(m4, newdata=test)
+testrss_4=sum((pred-test$MPG)^2)
+testrm_4 = sqrt(1/20*testrss_4)
+testrm_4
+
+m5 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5), train_x)
+m5
+
+
+plot(train_x$Weight,train_x$MPG, main = 'polynomial regression of subset4',pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4,5 for sample n2 = 20.png')
+dev.off()
+
+sum(m5$residuals^2)
+pred = predict(m5, newdata=test)
+testrss_5=sum((pred-test$MPG)^2)
+testrm_5 = sqrt(1/20*testrss_5)
+testrm_5
+
+m6 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+           I(Weight^6), train_x)
+m6
+
+
+plot(train_x$Weight,train_x$MPG, main = 'polynomial regression of subset4',pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.6 for sample n2 = 20.png')
+dev.off()
+
+sum(m6$residuals^2)
+pred = predict(m6, newdata=test)
+testrss_6=sum((pred-test$MPG)^2)
+testrm_6 = sqrt(1/20*testrss_6)
+testrm_6
+
+m10 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+            I(Weight^6)+I(Weight^7)+I(Weight^8)+I(Weight^9)+I(Weight^10), train_x)
+m10
+
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of subset4', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='red', type='l') 
+dev.copy(png,'Model4.10 for sample n2 = 20.png')
+dev.off()
+
+sum(m7$residuals^2)
+pred = predict(m7, newdata=test)
+testrss_10=sum((pred-test$MPG)^2)
+testrm_10 = sqrt(1/20*testrss_1)
+testrm_10
+
+k = c(testrm_1,testrm_2,testrm_3,testrm_4,testrm_5,
+      testrm_6,testrm_10)
+ModelComplexity = c(1,2,3,4,5,6,10)
+
+plot(ModelComplexity,k, type = "l",main = "Test Rss vs Model Complexity3", 
+     xlab = "ModelComplexity", ylab = "Test Rss", cex = 0.5, col = 'red')
+
+dev.copy(png,'Test Rss Vs Model Complexity3.png')
+dev.off()
+
+plot(train_x$Weight,train_x$MPG,main = 'polynomial regression of sample4', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='brown', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='green', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='yellow', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='black', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='blue', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='magenta', type='l',pch=20)
+
+dev.copy(png,'polynomial regression of sample 4.png')
+dev.off()
+
+
+
+
+
+#Plotting diffrenet order polynomial regression lines together
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='brown', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='green', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='yellow', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='black', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='blue', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l',pch=20)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='magenta', type='l',pch=20)
+
+
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+#############################################################################
+
+
+
+
+
+set.seed(1)
+rand = sample(1:nrow(Carsd),100)
+train = Carsd[rand, ]
+test = Carsd[-rand, ]
+
+train_random = sample(1:nrow(train),20)
+train_x = train[train_random,]
+
+
+m1 <- lm(MPG ~ Weight, train_x)
+m1
+
+
+plot(train_x$Weight,train_x$MPG,main='polynomial Regressionof sample size 100', pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m1)[order(train_x$Weight)], col='red', type='l') 
+
+
+
+sum(m1$residuals^2)
+pred = predict(m1, newdata=test)
+testrss_1=sum((pred-test$MPG)^2)
+testrm_1 = sqrt(1/20*testrss_1)
+testrm_1
+
+
+m2 <- lm(MPG ~ Weight+I(Weight^2), train_x)
+m2
+
+
+plot(train_x$Weight,train_x$MPG, pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m2)[order(train_x$Weight)], col='red', type='l') 
+
+
+sum(m2$residuals^2)
+pred = predict(m2, newdata=test)
+testrss_2=sum((pred-test$MPG)^2)
+testrm_2 = sqrt(1/20*testrss_2)
+testrm_2
+
+
+m3 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3), train_x)
+m3
+
+
+plot(train_x$Weight,train_x$MPG, pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m3)[order(train_x$Weight)], col='red', type='l') 
+
+
+sum(m3$residuals^2)
+pred = predict(m3, newdata=test)
+testrss_3=sum((pred-test$MPG)^2)
+testrm_3 = sqrt(1/20*testrss_3)
+testrm_3
+
+m4 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4), train_x)
+m4
+
+
+plot(train_x$Weight,train_x$MPG, pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m4)[order(train_x$Weight)], col='red', type='l') 
+
+
+sum(m4$residuals^2)
+pred = predict(m4, newdata=test)
+testrss_4=sum((pred-test$MPG)^2)
+testrm_4 = sqrt(1/20*testrss_4)
+testrm_4
+
+m5 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5), train_x)
+m5
+
+
+plot(train_x$Weight,train_x$MPG, pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m5)[order(train_x$Weight)], col='red', type='l') 
+
+
+sum(m5$residuals^2)
+pred = predict(m5, newdata=test)
+testrss_5=sum((pred-test$MPG)^2)
+testrm_5 = sqrt(1/20*testrss_5)
+testrm_5
+
+m6 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+           I(Weight^6), train_x)
+m6
+
+
+plot(train_x$Weight,train_x$MPG, pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m6)[order(train_x$Weight)], col='red', type='l') 
+
+
+sum(m6$residuals^2)
+pred = predict(m6, newdata=test)
+testrss_6=sum((pred-test$MPG)^2)
+testrm_6 = sqrt(1/20*testrss_6)
+testrm_6
+
+m10 <- lm(MPG ~ Weight+I(Weight^2)+I(Weight^3)+I(Weight^4)+I(Weight^5)+
+            I(Weight^6)+I(Weight^7)+I(Weight^8)+I(Weight^9)+I(Weight^10), train_x)
+m10
+
+
+plot(train_x$Weight,train_x$MPG, pch=19, cex=0.5)
+lines(sort(train_x$Weight), fitted(m10)[order(train_x$Weight)], col='red', type='l') 
+
+
+sum(m10$residuals^2)
+pred = predict(m7, newdata=test)
+testrss_10=sum((pred-test$MPG)^2)
+testrm_10 = sqrt(1/20*testrss_10)
+testrm_10
+
+k = c(testrm_1,testrm_2,testrm_3,testrm_4,testrm_5,
+      testrm_6,testrm_10)
+ModelComplexity = c(1,2,3,4,5,6,10)
+
+plot(ModelComplexity,k, type = "l",main = "Test Rss vs Model Complexity for Sample Size 100", 
+     xlab = "ModelComplexity", ylab = "Test Rss", cex = 0.5, col = 'red')
+
+dev.copy(png,'Test Rss Vs Model Complexity for Sample Size 100.png')
+dev.off()
+###############################################################################
+
+# Prepare train RMSE list and test RMSE list
+
+train_rmse=c(trainrm_1,trainrm_2,trainrm_3,trainrm_4,trainrm_5,trainrm_6,trainrm_9)
+test_rmse=c(testrm_1,testrm_2,testrm_3,testrm_4,testrm_5,testrm_6,testrm_10)
+complexity<-c(1,2,3,4,5,6,7,8,9)
+
+plot(complexity,train_rmse,pch=19,cex=0.5,ylab='Test/Train Error',xlab='Degree of Polynomial',lty=1)
+lines(complexity,train_rmse,col='blue')
+par(new = TRUE)
+plot(complexity,test_rmse,pch=19,axes=F,cex=0.5,ylab='Test/Train Error',xlab='Degree of Polynomial',lty=2)
+lines(complexity,test_rmse,col='red')
+
+legend('topright', legend=c("Test Error", "Train Error"),col=c("red", "blue"), lty=1:2, cex=0.8)
+
+
+
+
